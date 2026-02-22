@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    environment {
+        // CHANGE THIS to your actual Docker Hub username
+        DOCKER_HUB_USER = 'nisansala23' 
+        IMAGE_NAME = 'pizza-frontend'
+    }
+
+    stages {
+        stage('Cleanup') {
+            steps {
+                // This clears old builds to save space on your t3.medium
+                sh "docker system prune -f"
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                // Points to your 'frontend' folder where the Dockerfile is
+                sh "docker build -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest ./frontend"
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                // Uses the ID 'docker-hub-creds' you just created in Jenkins
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    sh "echo \$PASS | docker login -u \$USER --password-stdin"
+                    sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
+                }
+            }
+        }
+    }
+}
