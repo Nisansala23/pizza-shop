@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const pizzas = [
-  { id: 1, name: 'Classic Margherita', price: 12, tag: 'Classic', image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=600' },
+  { id: 1, name: 'Classic Margherita', price: 12, tag: 'Classic', image: 'https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=600' },
   { id: 2, name: 'Rustic Pepperoni', price: 15, tag: 'Bestseller', image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600' },
   { id: 3, name: 'Garden Veggie', price: 14, tag: "Chef's Pick", image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600' },
   { id: 4, name: 'BBQ Chicken', price: 16, tag: 'New', image: 'https://images.unsplash.com/photo-1555072956-7758afb20e8f?w=600' },
